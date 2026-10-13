@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABOUT ― FIELD NOTES</title>
+<meta name="description" content="マイナースポーツ観察記について。サイトの紹介、リンク、お問い合わせフォーム。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Shippori+Mincho:wght@500;600;800&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #DCEFF4;
+    --bg-card: #F3FAFB;
+    --ink: #1D3448;
+    --ink-soft: #4C6577;
+    --teal: #1B6E76;
+    --teal-deep: #124A50;
+    --coral: #D96A3B;
+    --line: #A9C9D6;
+    --line-soft: #C7DEE6;
+    --gold: #B9902A;
+
+    --font-display-en: 'Fraunces', serif;
+    --font-display-jp: 'Shippori Mincho', serif;
+    --font-body: 'Noto Sans JP', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+  :focus-visible{ outline: 2px solid var(--coral); outline-offset: 3px; }
+
+  body::before{
+    content:"";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      repeating-radial-gradient(circle at 12% 18%, transparent 0, transparent 38px, rgba(27,110,118,0.05) 39px, transparent 40px),
+      repeating-radial-gradient(circle at 88% 78%, transparent 0, transparent 46px, rgba(27,110,118,0.045) 47px, transparent 48px);
+  }
+
+  .wrap{ position: relative; z-index: 1; }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(220,239,244,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px dashed var(--line);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content: space-between;
+    padding: 18px 28px; max-width: 1080px; margin: 0 auto; gap: 16px;
+    position: relative;
+  }
+  .brand{ display:flex; flex-direction: column; line-height: 1.2; text-decoration: none; }
+  .brand-en{
+    font-family: var(--font-display-en); font-weight: 600;
+    letter-spacing: 0.18em; font-size: 0.95rem; color: var(--teal-deep);
+  }
+  .brand-jp{
+    font-family: var(--font-display-jp); font-size: 0.72rem;
+    color: var(--ink-soft); letter-spacing: 0.08em; margin-top: 2px;
+  }
+  nav{ display:flex; gap: 26px; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.04em; }
+  nav a{ text-decoration:none; color: var(--ink-soft); position: relative; padding-bottom: 3px; }
+  nav a.current{ color: var(--teal-deep); font-weight: 500; }
+  nav a.current::after{
+    content:""; position:absolute; left:0; right:0; bottom:-2px; height: 2px; background: var(--coral);
+  }
+  nav a:hover{ color: var(--teal-deep); }
+
+  .menu-toggle{
+    display:none;
+    background:none; border:1px dashed var(--line); border-radius: 3px;
+    color: var(--teal-deep);
+    font-size: 1.2rem; line-height: 1;
+    padding: 6px 10px;
+    cursor: pointer;
+  }
+
+  /* ---------- Page head ---------- */
+  .page-head{ padding: 72px 28px 40px; text-align: center; }
+  .hero-eyebrow{
+    font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.22em;
+    color: var(--teal); text-transform: uppercase; margin: 0;
+  }
+  .page-head h1{
+    font-family: var(--font-display-jp); font-weight: 800;
+    font-size: clamp(1.9rem, 4.6vw, 2.8rem); margin: 16px 0 8px; letter-spacing: 0.03em;
+  }
+  .page-head .en{
+    font-family: var(--font-display-en); font-style: italic; font-weight: 500;
+    color: var(--teal); font-size: 1rem; margin: 0;
+  }
+
+  /* ---------- Main ---------- */
+  main{ max-width: 860px; margin: 0 auto; padding: 0 28px 100px; }
+
+  .section-label{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin: 0 0 16px;
+    display:flex; align-items:center; gap: 12px;
+  }
+  .section-label::after{
+    content:""; flex:1; border-top: 1px dashed var(--line);
+  }
+  .block{ margin-bottom: 56px; }
+
+  /* about box */
+  .memo-box{
+    background: var(--bg-card);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    padding: 34px 38px;
+    position: relative;
+  }
+  .memo-box::before{
+    content: "MEMO";
+    position: absolute; top: -11px; left: 32px;
+    background: var(--coral); color:#fff;
+    font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.12em;
+    padding: 3px 10px; border-radius: 2px;
+  }
+  .memo-box p{ margin: 0 0 14px; font-size: 0.93rem; color: var(--ink-soft); }
+  .memo-box p:last-child{ margin-bottom: 0; }
+  .memo-box strong{ color: var(--ink); }
+
+  /* stamp legend */
+  .legend{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+  }
+  .legend-item{
+    background: var(--bg-card);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    padding: 16px 18px;
+  }
+  .legend-item p{ margin: 10px 0 0; font-size: 0.8rem; color: var(--ink-soft); line-height: 1.7; }
+  .stamp{
+    display:inline-flex; align-items:center; gap: 6px;
+    font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em;
+    border: 1.5px dashed currentColor; border-radius: 999px;
+    padding: 4px 10px 4px 8px; transform: rotate(-2deg);
+  }
+  .stamp.common{ color: #3E7A4F; }
+  .stamp.uncommon{ color: var(--teal-deep); }
+  .stamp.rare{ color: var(--coral); }
+  .stamp.vagrant{ color: var(--gold); }
+  .stamp-dot{ width:6px; height:6px; border-radius:50%; background: currentColor; display:inline-block; }
+
+  /* links */
+  .link-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .link-card{
+    display:flex; align-items:center; gap: 14px;
+    text-decoration:none;
+    background: var(--bg-card);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    padding: 14px 16px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  .link-card:hover{
+    transform: translateY(-2px);
+    border-color: var(--teal);
+    box-shadow: 0 8px 20px rgba(27,110,118,0.12);
+  }
+  .link-icon{
+    flex-shrink:0;
+    width: 42px; height: 42px;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 1.3rem;
+    background: var(--bg);
+    border: 1px dashed var(--line);
+    border-radius: 3px;
+  }
+  .link-text{ flex:1; min-width:0; }
+  .link-name{
+    display:block;
+    font-family: var(--font-display-jp);
+    font-weight: 700; font-size: 0.95rem; color: var(--ink);
+  }
+  .link-desc{ display:block; font-size: 0.74rem; color: var(--ink-soft); line-height: 1.5; }
+  .link-arrow{ color: var(--line); font-size: 1.2rem; transition: transform 0.18s ease, color 0.18s ease; }
+  .link-card:hover .link-arrow{ color: var(--coral); transform: translateX(3px); }
+
+  /* form */
+  .form-card{
+    background: var(--bg-card);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    padding: 30px 34px;
+  }
+  .form-intro{ margin: 0 0 22px; font-size: 0.88rem; color: var(--ink-soft); }
+  .form-group{ margin-bottom: 18px; }
+  .form-label{
+    display:block;
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em;
+    color: var(--teal-deep); margin-bottom: 6px;
+  }
+  .required{ color: var(--coral); font-style: normal; }
+  .form-input, .form-textarea{
+    width:100%;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    padding: 10px 14px;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .form-input::placeholder, .form-textarea::placeholder{ color: #9bb3c0; }
+  .form-input:focus, .form-textarea:focus{
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(27,110,118,0.15);
+  }
+  .form-textarea{ resize: vertical; min-height: 140px; }
+  .field-error{ display:block; font-size: 0.74rem; color: #B4412A; margin-top: 4px; }
+  .form-submit{
+    display:inline-flex; align-items:center; gap: 8px;
+    background: var(--teal-deep);
+    color: #fff;
+    border: none; border-radius: 3px;
+    font-family: var(--font-body); font-size: 0.9rem; letter-spacing: 0.1em;
+    padding: 11px 28px;
+    cursor: pointer;
+    transition: background 0.18s ease;
+  }
+  .form-submit:hover{ background: var(--teal); }
+  .form-submit:disabled{ opacity: 0.5; cursor: not-allowed; }
+  .form-success{
+    background: #E4F4E8; border: 1px solid #A9D3B4; border-radius: 3px;
+    padding: 14px 18px; text-align:center; color: #2E6A40; font-size: 0.9rem; margin-bottom: 18px;
+  }
+  .form-success p{ margin: 0; }
+  .form-error-global{
+    background: #FBE9E3; border: 1px solid #E8B8A6; border-radius: 3px;
+    padding: 12px 16px; color: #B4412A; font-size: 0.86rem; margin-bottom: 16px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{ border-top: 1px dashed var(--line); padding: 34px 28px 40px; }
+  .footer-inner{
+    max-width: 1080px; margin: 0 auto;
+    display:flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-soft);
+  }
+  .footer-inner a{ text-decoration: none; }
+  .footer-inner a:hover{ color: var(--teal-deep); }
+  .footer-nav{ display:flex; gap: 18px; }
+  .footer-notice{
+    max-width: 800px; margin: 22px auto 0;
+    text-align: center;
+    font-size: 0.7rem; line-height: 1.9; color: var(--ink-soft);
+  }
+  .footer-notice p{ margin: 0 0 6px; }
+
+  @media (max-width: 720px){
+    .menu-toggle{ display:block; }
+    nav{
+      display:none;
+      flex-direction: column;
+      gap: 14px;
+      position:absolute;
+      top: calc(100% + 1px); right: 20px;
+      width: 190px;
+      background: var(--bg-card);
+      border: 1px dashed var(--line);
+      border-radius: 0 0 6px 6px;
+      padding: 16px 18px;
+      box-shadow: 0 8px 20px rgba(27,110,118,0.14);
+    }
+    nav.active{ display:flex; }
+    .page-head{ padding: 56px 20px 32px; }
+    main{ padding: 0 18px 80px; }
+    .memo-box{ padding: 30px 24px; }
+    .form-card{ padding: 24px 20px; }
+    .link-grid{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-en">FIELD NOTES</span>
+        <span class="brand-jp">マイナースポーツ観察記</span>
+      </a>
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="メニューを開く">☰</button>
+      <nav id="navLinks">
+        <a href="index.html">HOME</a>
+        <a href="blog.html">観察日誌</a>
+        <a href="gallery.html">標本帳</a>
+        <a href="about.html" class="current">ABOUT</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head">
+    <p class="hero-eyebrow">About this notebook</p>
+    <h1>このノートについて</h1>
+    <p class="en">Field Notes — About &amp; Contact</p>
+  </section>
+
+  <main>
+
+    <section class="block">
+      <p class="section-label">About</p>
+      <div class="memo-box">
+        <p><strong>FIELD NOTES ― マイナースポーツ観察記</strong>は、アドベンチャーレースやアルティメットなど、
+        知る人ぞ知るマイナースポーツを一つずつ観察して記録していく勉強サイトです。</p>
+        <p>ルールや歴史、魅力を調べながら、野鳥観察のフィールドノートのように少しずつ「観察対象」を増やしていきます。
+        観察日誌では日々の記録を、標本帳では競技のワンシーンを留めていきます。</p>
+        <p>運営は <strong>Azalea72 / Azalea Creative Room</strong>。漫画やイラストの制作のかたわら、気になったテーマを勉強サイトとして形にしています。</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="section-label">遭遇度スタンプについて</p>
+      <div class="legend">
+        <div class="legend-item">
+          <span class="stamp common"><span class="stamp-dot"></span>コモン</span>
+          <p>身近でよく見かける競技。</p>
+        </div>
+        <div class="legend-item">
+          <span class="stamp uncommon"><span class="stamp-dot"></span>アンコモン</span>
+          <p>知っている人は知っている、競技人口が育ちつつある競技。</p>
+        </div>
+        <div class="legend-item">
+          <span class="stamp rare"><span class="stamp-dot"></span>レア</span>
+          <p>少人数の熱心なコミュニティで支えられている競技。</p>
+        </div>
+        <div class="legend-item">
+          <span class="stamp vagrant"><span class="stamp-dot"></span>迷入</span>
+          <p>日本ではごく稀にしか出会えない競技。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="section-label">漫画・イラスト掲載サイト</p>
+      <div class="link-grid">
+        <a class="link-card" href="https://rookie.shonenjump.com/users/14728546961183734555" target="_blank" rel="noopener">
+          <div class="link-icon">📚</div>
+          <div class="link-text">
+            <span class="link-name">ジャンプルーキー</span>
+            <span class="link-desc">オリジナル漫画を掲載中</span>
+          </div>
+          <span class="link-arrow">›</span>
+        </a>
+        <a class="link-card" href="https://www.pixiv.net/users/105728284" target="_blank" rel="noopener">
+          <div class="link-icon">🎨</div>
+          <div class="link-text">
+            <span class="link-name">Pixiv</span>
+            <span class="link-desc">二次創作はこちらに掲載</span>
+          </div>
+          <span class="link-arrow">›</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="section-label">SNS・その他</p>
+      <div class="link-grid">
+        <a class="link-card" href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">
+          <div class="link-icon">🦋</div>
+          <div class="link-text">
+            <span class="link-name">Bluesky</span>
+            <span class="link-desc">近況・作品のお知らせ</span>
+          </div>
+          <span class="link-arrow">›</span>
+        </a>
+        <a class="link-card" href="https://www.youtube.com/@LilyPopins0512" target="_blank" rel="noopener">
+          <div class="link-icon">🎬</div>
+          <div class="link-text">
+            <span class="link-name">YouTube（リリポピ）</span>
+            <span class="link-desc">動画チャンネル</span>
+          </div>
+          <span class="link-arrow">›</span>
+        </a>
+        <a class="link-card" href="https://lilipopi.github.io/lilypopins/" target="_blank" rel="noopener">
+          <div class="link-icon">🌸</div>
+          <div class="link-text">
+            <span class="link-name">リリポピのホームページ</span>
+            <span class="link-desc">別サイト</span>
+          </div>
+          <span class="link-arrow">›</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="section-label">Azalea72のホームページ</p>
+      <div class="link-grid">
+        <a class="link-card" href="https://azaleacreativeroom888.github.io/storyreviewazalea/" target="_blank" rel="noopener">
+          <div class="link-icon">📖</div>
+          <div class="link-text">
+            <span class="link-name">書評サイト</span>
+            <span class="link-desc">本・アニメ・映画・ゲーム・小説の備忘録</span>
+          </div>
+          <span class="link-arrow">›</span>
+        </a>
+        <a class="link-card" href="https://azaleacreativeroom888.github.io/fan-english/" target="_blank" rel="noopener">
+          <div class="link-icon">🍔</div>
+          <div class="link-text">
+            <span class="link-name">英語サイト（English Site）</span>
+            <span class="link-desc">英語話者と英語学習者に向けたサイト</span>
+          </div>
+          <span class="link-arrow">›</span>
+        </a>
+        <a class="link-card" href="https://azaleacreativeroom888.github.io/fan-watercolor/" target="_blank" rel="noopener">
+          <div class="link-icon">☁️</div>
+          <div class="link-text">
+            <span class="link-name">水彩画サイト</span>
+            <span class="link-desc">水彩画掲載</span>
+          </div>
+          <span class="link-arrow">›</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="section-label">お問い合わせフォーム</p>
+      <div class="form-card">
+        <p class="form-intro">ご質問・ご感想、「この競技も観察してほしい！」といったリクエストはこちらからどうぞ。<br>Gmailで受け取り、返信いたします。</p>
+
+        <div data-fs-success class="form-success" style="display:none;">
+          <p>メッセージを送信しました。ありがとうございます！</p>
+        </div>
+        <div data-fs-error class="form-error-global" style="display:none;"></div>
+
+        <form id="contact-form" action="https://formspree.io/f/maqvpvoz" method="POST">
+          <div class="form-group">
+            <label class="form-label" for="name">お名前</label>
+            <input class="form-input" type="text" id="name" name="name" placeholder="お名前" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">メールアドレス <span class="required">*</span></label>
+            <input class="form-input" type="email" id="email" name="email" data-fs-field placeholder="example@email.com" required>
+            <span data-fs-error="email" class="field-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">メッセージ <span class="required">*</span></label>
+            <textarea class="form-textarea" id="message" name="message" data-fs-field placeholder="メッセージを入力してください…" rows="6" required></textarea>
+            <span data-fs-error="message" class="field-error"></span>
+          </div>
+          <button class="form-submit" type="submit" data-fs-submit-btn>📮 送信する</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© Azalea Creative Room — Field Notes</span>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="blog.html">観察日誌</a>
+        <a href="gallery.html">標本帳</a>
+      </div>
+    </div>
+    <div class="footer-notice">
+      <p>当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載・転載、二次利用を禁止します。スクリーンショットの転載・無断引用はご遠慮ください。</p>
+      <p>Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.</p>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#contact-form', formId: 'maqvpvoz' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
